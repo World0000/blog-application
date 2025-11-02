@@ -5,22 +5,23 @@ class Database {
     public function getConnection() {
         $this->conn = null;
         
-        // Use Railway environment variables
-        $host = getenv('MYSQLHOST') ?: 'localhost';
-        $port = getenv('MYSQLPORT') ?: '3306';
-        $dbname = getenv('MYSQLDATABASE') ?: 'blog_db';
-        $username = getenv('MYSQLUSER') ?: 'root';
-        $password = getenv('MYSQLPASSWORD') ?: '';
+        // Local MAMP settings
+        $host = 'localhost';
+        $port = '8889';
+        $dbname = 'blog_db';
+        $username = 'root';
+        $password = 'root';
         
         try {
             $this->conn = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $dbname, $username, $password);
             $this->conn->exec("set names utf8");
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $this->conn;
         } catch(PDOException $exception) {
             error_log("Database connection error: " . $exception->getMessage());
-            echo "Database connection failed. Please try again later.";
+            // Return null instead of echoing to avoid breaking the page
+            return null;
         }
-        return $this->conn;
     }
 }
 ?>

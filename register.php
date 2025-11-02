@@ -22,28 +22,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (strlen($password) < 6) {
         $error = 'Password must be at least 6 characters long.';
     } else {
+        // Create new database connection for each request
         $database = new Database();
         $db = $database->getConnection();
 
-        // Check if username or email already exists
-        $query = "SELECT id FROM user WHERE username = ? OR email = ?";
-        $stmt = $db->prepare($query);
-        $stmt->execute([$username, $email]);
-
-        if ($stmt->rowCount() > 0) {
-            $error = 'Username or email already exists.';
+        if (!$db) {
+            $error = 'Database connection failed. Please try again later.';
         } else {
-            // Insert new user
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-            $query = "INSERT INTO user (username, email, password) VALUES (?, ?, ?)";
+            // Check if username or email already exists
+            $query = "SELECT id FROM user WHERE username = ? OR email = ?";
             $stmt = $db->prepare($query);
-            
-            if ($stmt->execute([$username, $email, $hashed_password])) {
-                $success = 'Registration successful! You can now login.';
-                // Clear form
-                $username = $email = '';
+            $stmt->execute([$username, $email]);
+
+            if ($stmt->rowCount() > 0) {
+                $error = 'Username or email already exists.';
             } else {
-                $error = 'Registration failed. Please try again.';
+                // Insert new user
+                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+                $query = "INSERT INTO user (username, email, password) VALUES (?, ?, ?)";
+                $stmt = $db->prepare($query);
+                
+                if ($stmt->execute([$username, $email, $hashed_password])) {
+                    $success = 'Registration successful! You can now login.';
+                    // Clear form
+                    $username = $email = '';
+                } else {
+                    $error = 'Registration failed. Please try again.';
+                }
             }
         }
     }
