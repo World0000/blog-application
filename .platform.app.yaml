@@ -1,0 +1,21 @@
+name: blog-application
+type: php:8.2
+
+build:
+  flavor: none
+
+web:
+  locations:
+    "/":
+      root: "."
+      script: "index.php"
+      passthru: "/index.php"
+
+mounts:
+  "web":
+    source: local
+    source_path: web
+
+hooks:
+  build: |
+    composer install --no-dev --optimize-autoloader
