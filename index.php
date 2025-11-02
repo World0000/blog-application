@@ -9,13 +9,14 @@ $blogPosts = getAllBlogPosts();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Application</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>MyBlog - Modern Blog Platform</title>
+    <link rel="stylesheet" href="css/modern-simple.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <nav class="container">
-            <div class="logo">MyBlog</div>
+            <a href="index.php" class="logo">MyBlog</a>
             <ul class="nav-links">
                 <li><a href="index.php">Home</a></li>
                 <?php if (isLoggedIn()): ?>
@@ -34,7 +35,10 @@ $blogPosts = getAllBlogPosts();
         <h1>Latest Blog Posts</h1>
         
         <?php if (empty($blogPosts)): ?>
-            <p>No blog posts yet. Be the first to write one!</p>
+            <div class="text-center">
+                <p style="color: var(--gray-600); margin-bottom: 2rem;">No blog posts yet. Be the first to share your story!</p>
+                <a href="register.php" class="btn">Get Started</a>
+            </div>
         <?php else: ?>
             <div class="blog-grid">
                 <?php foreach ($blogPosts as $post): ?>
@@ -42,7 +46,7 @@ $blogPosts = getAllBlogPosts();
                         <h3><?php echo htmlspecialchars($post['title']); ?></h3>
                         <div class="blog-meta">
                             By <?php echo htmlspecialchars($post['username']); ?> 
-                            on <?php echo date('F j, Y', strtotime($post['created_at'])); ?>
+                            • <?php echo date('F j, Y', strtotime($post['created_at'])); ?>
                         </div>
                         <p><?php echo substr(htmlspecialchars($post['content']), 0, 150); ?>...</p>
                         <a href="view-blog.php?id=<?php echo $post['id']; ?>" class="btn">Read More</a>

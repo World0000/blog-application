@@ -5,7 +5,7 @@ STUDENT INFORMATION:
 - Name: [Your Name]
 - Student Index Number: [Your Index Number]
 - Module: Web Programming
-- Date: [Submission Date]
+- Date: $(date +"%B %d, %Y")
 
 PROJECT OVERVIEW:
 This is a complete blog application built with HTML, CSS, JavaScript, PHP, and MySQL.
@@ -32,10 +32,10 @@ DATABASE STRUCTURE:
 - blogPost table (id, user_id, title, content, created_at, updated_at)
 
 GITHUB REPOSITORY:
-[Your GitHub Repository Link Will Be Added Here]
+https://github.com/World0000/blog-application
 
 HOSTED WEBSITE URL:
-[Your Hosted Website Link Will Be Added Here]
+[Your Hosted Website Link Will Be Added After Deployment]
 
 INSTALLATION INSTRUCTIONS:
 
@@ -67,14 +67,11 @@ The application has been tested for:
 ✓ Responsive design on different devices
 ✓ Error handling and validation
 
-NOTE: The GitHub repository link and hosted website URL will be updated
-once the repository is created and the application is deployed.
-
 SUBMISSION CHECKLIST:
 ✓ Complete source code
 ✓ Working application
 ✓ Database schema
 ✓ Documentation
+✓ GitHub repository: https://github.com/World0000/blog-application
 ✓ Demonstration video (to be recorded)
-✓ GitHub repository (to be created)
 ✓ Hosted version (to be deployed)

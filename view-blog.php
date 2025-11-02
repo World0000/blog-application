@@ -21,13 +21,14 @@ $isOwner = isLoggedIn() && $blogPost['user_id'] == getCurrentUserId();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo htmlspecialchars($blogPost['title']); ?> - Blog Application</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title><?php echo htmlspecialchars($blogPost['title']); ?> - MyBlog</title>
+    <link rel="stylesheet" href="css/modern-simple.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <nav class="container">
-            <div class="logo">MyBlog</div>
+            <a href="index.php" class="logo">MyBlog</a>
             <ul class="nav-links">
                 <li><a href="index.php">Home</a></li>
                 <?php if (isLoggedIn()): ?>
@@ -46,21 +47,29 @@ $isOwner = isLoggedIn() && $blogPost['user_id'] == getCurrentUserId();
         <div class="blog-content">
             <h1><?php echo htmlspecialchars($blogPost['title']); ?></h1>
             
-            <div class="blog-meta">
-                Written by <?php echo htmlspecialchars($blogPost['username']); ?> 
-                on <?php echo date('F j, Y', strtotime($blogPost['created_at'])); ?>
+            <div class="blog-meta" style="margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--gray-200);">
+                <strong>By <?php echo htmlspecialchars($blogPost['username']); ?></strong> 
+                • <?php echo date('F j, Y \a\t g:i A', strtotime($blogPost['created_at'])); ?>
+                <?php if ($blogPost['updated_at'] != $blogPost['created_at']): ?>
+                    <br><em>Updated: <?php echo date('F j, Y \a\t g:i A', strtotime($blogPost['updated_at'])); ?></em>
+                <?php endif; ?>
             </div>
 
-            <div style="margin-top: 2rem; line-height: 1.8; white-space: pre-line;">
+            <div style="line-height: 1.8; font-size: 1.1rem; white-space: pre-line;">
                 <?php echo htmlspecialchars($blogPost['content']); ?>
             </div>
 
             <?php if ($isOwner): ?>
-                <div class="blog-actions">
-                    <a href="edit-blog.php?id=<?php echo $blogPost['id']; ?>" class="btn">Edit</a>
+                <div class="blog-actions" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--gray-200);">
+                    <a href="edit-blog.php?id=<?php echo $blogPost['id']; ?>" class="btn">Edit Post</a>
                     <a href="delete-blog.php?id=<?php echo $blogPost['id']; ?>" 
                        class="btn btn-danger" 
-                       onclick="return confirm('Are you sure you want to delete this blog?')">Delete</a>
+                       onclick="return confirm('Are you sure you want to delete this blog post?')">Delete Post</a>
+                    <a href="dashboard.php" class="btn btn-secondary">Back to Dashboard</a>
+                </div>
+            <?php else: ?>
+                <div class="blog-actions" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--gray-200);">
+                    <a href="index.php" class="btn">Back to All Posts</a>
                 </div>
             <?php endif; ?>
         </div>

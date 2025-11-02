@@ -37,13 +37,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Blog - Blog Application</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Create Blog - MyBlog</title>
+    <link rel="stylesheet" href="css/modern-simple.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <nav class="container">
-            <div class="logo">MyBlog</div>
+            <a href="index.php" class="logo">MyBlog</a>
             <ul class="nav-links">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="dashboard.php">Dashboard</a></li>
@@ -55,30 +56,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <main class="container">
         <div class="form-container">
-            <h2>Create New Blog Post</h2>
+            <h1 style="text-align: center; margin-bottom: 2rem;">Create New Blog Post</h1>
             
             <?php if ($error): ?>
-                <div style="color: red; margin-bottom: 1rem; padding: 10px; background: #ffe6e6; border: 1px solid red; border-radius: 4px;"><?php echo $error; ?></div>
+                <div class="alert alert-error"><?php echo $error; ?></div>
             <?php endif; ?>
             
             <?php if ($success): ?>
-                <div style="color: green; margin-bottom: 1rem; padding: 10px; background: #e6ffe6; border: 1px solid green; border-radius: 4px;"><?php echo $success; ?></div>
+                <div class="alert alert-success"><?php echo $success; ?></div>
             <?php endif; ?>
 
             <form method="POST" action="">
                 <div class="form-group">
-                    <label for="title">Title:</label>
+                    <label for="title">Title</label>
                     <input type="text" id="title" name="title" required
                            value="<?php echo isset($_POST['title']) ? htmlspecialchars($_POST['title']) : ''; ?>">
                 </div>
 
                 <div class="form-group">
-                    <label for="content">Content:</label>
+                    <label for="content">Content</label>
                     <textarea id="content" name="content" required><?php echo isset($_POST['content']) ? htmlspecialchars($_POST['content']) : ''; ?></textarea>
                 </div>
 
-                <button type="submit" class="btn">Create Blog Post</button>
-                <a href="dashboard.php" class="btn" style="background: #7f8c8d;">Cancel</a>
+                <div style="display: flex; gap: 1rem;">
+                    <button type="submit" class="btn">Publish Post</button>
+                    <a href="dashboard.php" class="btn btn-secondary">Cancel</a>
+                </div>
             </form>
         </div>
     </main>

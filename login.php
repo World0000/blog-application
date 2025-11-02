@@ -38,13 +38,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Blog Application</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Login - MyBlog</title>
+    <link rel="stylesheet" href="css/modern-simple.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <nav class="container">
-            <div class="logo">MyBlog</div>
+            <a href="index.php" class="logo">MyBlog</a>
             <ul class="nav-links">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="register.php">Register</a></li>
@@ -54,30 +55,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <main class="container">
         <div class="form-container">
-            <h2>Login</h2>
+            <h1 style="text-align: center; margin-bottom: 2rem;">Welcome Back</h1>
             
             <?php if ($error): ?>
-                <div style="color: red; margin-bottom: 1rem; padding: 10px; background: #ffe6e6; border: 1px solid red; border-radius: 4px;"><?php echo $error; ?></div>
+                <div class="alert alert-error"><?php echo $error; ?></div>
             <?php endif; ?>
 
             <form method="POST" action="">
                 <div class="form-group">
-                    <label for="username">Username:</label>
+                    <label for="username">Username</label>
                     <input type="text" id="username" name="username" required
                            value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>">
                 </div>
 
                 <div class="form-group">
-                    <label for="password">Password:</label>
+                    <label for="password">Password</label>
                     <input type="password" id="password" name="password" required>
                 </div>
 
-                <button type="submit" class="btn">Login</button>
+                <button type="submit" class="btn" style="width: 100%; justify-content: center;">Login</button>
             </form>
 
-            <p style="margin-top: 1rem;">
-                Don't have an account? <a href="register.php">Register here</a>
-            </p>
+            <div class="text-center mt-2">
+                <p style="color: var(--gray-600);">Don't have an account? <a href="register.php" style="color: var(--primary); text-decoration: none; font-weight: 500;">Register here</a></p>
+            </div>
         </div>
     </main>
 </body>
