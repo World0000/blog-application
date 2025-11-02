@@ -1,0 +1,80 @@
+BLOG APPLICATION - WEB PROGRAMMING MODULE ASSIGNMENT
+===================================================
+
+STUDENT INFORMATION:
+- Name: [Your Name]
+- Student Index Number: [Your Index Number]
+- Module: Web Programming
+- Date: [Submission Date]
+
+PROJECT OVERVIEW:
+This is a complete blog application built with HTML, CSS, JavaScript, PHP, and MySQL.
+The application meets all assignment requirements including user authentication, blog
+management, and proper database design.
+
+FEATURES IMPLEMENTED:
+✓ User Registration and Login System
+✓ Blog Creation, Reading, Updating, and Deletion (CRUD)
+✓ User Authentication and Authorization
+✓ Responsive Frontend Design
+✓ MySQL Database with Proper Tables
+✓ Session Management
+✓ Security Features (Password Hashing, SQL Injection Prevention)
+
+TECHNOLOGY STACK:
+- Frontend: HTML5, CSS3, JavaScript
+- Backend: PHP
+- Database: MySQL
+- Server: Apache
+
+DATABASE STRUCTURE:
+- user table (id, username, email, password, role, created_at)
+- blogPost table (id, user_id, title, content, created_at, updated_at)
+
+GITHUB REPOSITORY:
+[Your GitHub Repository Link Will Be Added Here]
+
+HOSTED WEBSITE URL:
+[Your Hosted Website Link Will Be Added Here]
+
+INSTALLATION INSTRUCTIONS:
+
+Local Development:
+1. Place files in web server directory (htdocs for XAMPP/MAMP)
+2. Start Apache and MySQL servers
+3. Run setup_database.php to create database
+4. Access application via http://localhost/blog-application/
+
+Hosting Deployment:
+1. Upload all files to web server
+2. Create MySQL database through hosting control panel
+3. Import database_schema.sql or run setup_hosting.php
+4. Update database credentials in config/database.php if needed
+
+FILES INCLUDED IN SUBMISSION:
+- All PHP files for application functionality
+- CSS for styling
+- Database configuration
+- Setup scripts
+- Documentation files
+- Demonstration video
+
+TESTING:
+The application has been tested for:
+✓ User registration and login
+✓ Blog post creation and management
+✓ Authorization (users can only manage their own posts)
+✓ Responsive design on different devices
+✓ Error handling and validation
+
+NOTE: The GitHub repository link and hosted website URL will be updated
+once the repository is created and the application is deployed.
+
+SUBMISSION CHECKLIST:
+✓ Complete source code
+✓ Working application
+✓ Database schema
+✓ Documentation
+✓ Demonstration video (to be recorded)
+✓ GitHub repository (to be created)
+✓ Hosted version (to be deployed)
