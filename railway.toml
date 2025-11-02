@@ -2,8 +2,8 @@
 builder = "NIXPACKS"
 
 [deploy]
-startCommand = "php -S 0.0.0.0:${PORT:-8000} -t ."
+startCommand = "php -S 0.0.0.0:\$PORT -t ."
 
 [[services]]
 name = "web"
-httpPort = "8000"
+httpPort = "8080"
