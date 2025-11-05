@@ -19,7 +19,6 @@ class Database {
             return $this->conn;
         } catch(PDOException $exception) {
             error_log("Database connection error: " . $exception->getMessage());
-            // Return null instead of echoing to avoid breaking the page
             return null;
         }
     }
