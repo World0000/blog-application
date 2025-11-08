@@ -8,6 +8,15 @@ if (!isLoggedIn()) {
 
 $userBlogs = getUserBlogPosts(getCurrentUserId());
 $blogCount = count($userBlogs);
+
+// Calculate total words across all posts
+$totalWords = 0;
+foreach ($userBlogs as $post) {
+    $totalWords += str_word_count($post['content']);
+}
+
+// Calculate average words per post
+$avgWords = $blogCount > 0 ? round($totalWords / $blogCount) : 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,11 +56,11 @@ $blogCount = count($userBlogs);
                 <span class="stat-label">Total Posts</span>
             </div>
             <div class="stat-card">
-                <span class="stat-number"><?php echo $blogCount > 0 ? array_sum(array_map('str_word_count', array_column($userBlogs, 'content'))) : 0; ?></span>
+                <span class="stat-number"><?php echo $totalWords; ?></span>
                 <span class="stat-label">Words Written</span>
             </div>
             <div class="stat-card">
-                <span class="stat-number"><?php echo $blogCount > 0 ? round(array_sum(array_map('str_word_count', array_column($userBlogs, 'content'))) / $blogCount) : 0; ?></span>
+                <span class="stat-number"><?php echo $avgWords; ?></span>
                 <span class="stat-label">Avg. Words/Post</span>
             </div>
         </div>
@@ -81,6 +90,7 @@ $blogCount = count($userBlogs);
                             <?php if ($post['updated_at'] != $post['created_at']): ?>
                                 <br>Updated: <?php echo date('F j, Y', strtotime($post['updated_at'])); ?>
                             <?php endif; ?>
+                            <br>Words: <?php echo str_word_count($post['content']); ?>
                         </div>
                         <p><?php echo substr(htmlspecialchars($post['content']), 0, 120); ?>...</p>
                         <div class="blog-actions">
